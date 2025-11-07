@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuestionnaireApp.MainPage"
+             Title="Анкета">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            
+            <!-- Заголовок -->
+            <Label Text="Анкета" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="#2C3E50"/>
+            
+            <!-- Фамилия -->
+            <Label Text="Фамилия *" 
+                   FontSize="16" 
+                   FontAttributes="Bold"/>
+            <Entry x:Name="LastNameEntry" 
+                   Placeholder="Введите фамилию"
+                   TextChanged="OnTextChanged"/>
+            
+            <!-- Имя -->
+            <Label Text="Имя *" 
+                   FontSize="16" 
+                   FontAttributes="Bold"/>
+            <Entry x:Name="FirstNameEntry" 
+                   Placeholder="Введите имя"
+                   TextChanged="OnTextChanged"/>
+            
+            <!-- Отчество -->
+            <Label Text="Отчество" 
+                   FontSize="16" 
+                   FontAttributes="Bold"/>
+            <Entry x:Name="MiddleNameEntry" 
+                   Placeholder="Введите отчество (при наличии)"/>
+            
+            <!-- Возраст -->
+            <Label Text="Возраст: " 
+                   FontSize="16" 
+                   FontAttributes="Bold">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Возраст: "/>
+                        <Span x:Name="AgeValueSpan" Text="25"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            
+            <!-- Slider для возраста -->
+            <Slider x:Name="AgeSlider"
+                    Minimum="0"
+                    Maximum="100"
+                    Value="25"
+                    ValueChanged="OnAgeValueChanged"/>
+            
+            <!-- Stepper для возраста -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="-" 
+                        WidthRequest="50"
+                        Clicked="OnDecrementAge"/>
+                <Label x:Name="AgeStepperLabel" 
+                       Text="25"
+                       FontSize="18"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       WidthRequest="40"/>
+                <Button Text="+" 
+                        WidthRequest="50"
+                        Clicked="OnIncrementAge"/>
+            </StackLayout>
+            
+            <!-- Номер телефона -->
+            <Label Text="Номер телефона *" 
+                   FontSize="16" 
+                   FontAttributes="Bold"/>
+            <Entry x:Name="PhoneEntry" 
+                   Placeholder="Введите номер телефона"
+                   Keyboard="Telephone"
+                   TextChanged="OnPhoneTextChanged"/>
+            
+            <!-- Пол -->
+            <Label Text="Пол *" 
+                   FontSize="16" 
+                   FontAttributes="Bold"/>
+            
+            <StackLayout Orientation="Horizontal" Spacing="20">
+                <StackLayout Orientation="Horizontal">
+                    <RadioButton x:Name="MaleRadioButton" 
+                               Content="Мужской"
+                               CheckedChanged="OnGenderCheckedChanged"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <RadioButton x:Name="FemaleRadioButton" 
+                               Content="Женский"
+                               CheckedChanged="OnGenderCheckedChanged"/>
+                </StackLayout>
+            </StackLayout>
+            
+            <!-- Согласие с условиями -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Switch x:Name="AgreementSwitch"
+                        Toggled="OnAgreementToggled"/>
+                <Label Text="Согласен с условиями обработки данных *"
+                       FontSize="14"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAgreementLabelTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            
+            <!-- Кнопка отправки -->
+            <Button x:Name="SubmitButton" 
+                    Text="Отправить"
+                    BackgroundColor="#95A5A6"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Clicked="OnSubmitClicked"
+                    IsEnabled="False"/>
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
